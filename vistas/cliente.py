@@ -23,7 +23,7 @@ class Frame3(Frame):
 
         self.label_form()
         self.input_form()
-        #self.tabla_cliente()
+        self.tabla_cliente()
 
     def label_form(self):
         self.label_nombre = tk.Label(self, text="Nombre:")
