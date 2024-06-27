@@ -1,7 +1,10 @@
 import json
 
+def ruta_archivo(nombre):
+    return  './ddbb/' + nombre + '.json'
+
 def leer_archivo(nombre):
-    ruta = './ddbb/' + nombre + '.json'
+    ruta = ruta_archivo(nombre)
     with open(ruta, 'r', encoding='utf-8') as f:
         carga = f.read()
 
@@ -10,7 +13,7 @@ def leer_archivo(nombre):
     return contenido
 
 def incrementar_id(nombre, tipo):
-    ruta = './ddbb/' + nombre + '.json'
+    ruta = ruta_archivo(nombre)
     id = leer_archivo(nombre)
     
     if tipo == 'cliente':

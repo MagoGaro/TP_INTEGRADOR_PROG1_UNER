@@ -32,7 +32,25 @@
         "apellido": "Roman",
         "documento": "35136461",
         "direccion": "calle falsa 321",
-        "telefono": "111111111",
+        "telefono": "333",
+        "correo_electronico": "test@test.com"
+    },
+    {
+        "id_cliente": 5,
+        "nombre": "test2",
+        "apellido": "test2",
+        "documento": "test2",
+        "direccion": "test2",
+        "telefono": "test2",
+        "correo_electronico": "test2"
+    },
+    {
+        "id_cliente": 6,
+        "nombre": "Gabriel",
+        "apellido": "Roman",
+        "documento": "35136461",
+        "direccion": "calle falsa 321",
+        "telefono": "2222222",
         "correo_electronico": "test@test.com"
     }
 ]

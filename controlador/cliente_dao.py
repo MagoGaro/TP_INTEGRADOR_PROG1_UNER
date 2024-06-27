@@ -1,22 +1,33 @@
-from .controlador import leer_archivo, incrementar_id
+from .controlador import ruta_archivo,leer_archivo, incrementar_id
 import json
 import base64
 
 def leer_cliente(nombre):
     return leer_archivo(nombre)
 
-def guardar_cliente(persona):
-    ruta = './ddbb/' + 'clientes' + '.json'
-    info = leer_cliente('clientes')
+def guardar_cliente(persona,archivo):
+    ruta = ruta_archivo(archivo)
+    info = leer_cliente(archivo)
     persona['id_cliente'] =  incrementar_id('ids', 'cliente')
     info.append(persona)
 
     with open(ruta, 'w') as f:
         json.dump(info, f, indent=4)
 
-#print(leer_archivo('vehiculos'))
+def editar_cliente(persona,archivo,id):
+    ruta = ruta_archivo(archivo)
+    info = leer_cliente(archivo)
 
-#x = leer_archivo('vehiculos')
+    for p in info:
+        if p ['id_cliente'] == id:
+            p["nombre"] = persona['nombre']
+            p["apellido"] = persona['apellido']
+            p["documento"] = persona['documento']
+            p["direccion"] = persona['direccion']
+            p["telefono"] = persona['telefono']
+            p["correo_electronico"] = persona['correo_electronico']
 
-#print(x[0]['patente'])
+    with open(ruta, 'w') as f:
+        json.dump(info, f, indent=4)
+
 

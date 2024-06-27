@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 from .claseg import Frame
-from controlador.cliente_dao import leer_cliente, guardar_cliente
+from controlador.cliente_dao import leer_cliente, guardar_cliente, editar_cliente
 
 
 def open_vista_cliente(root):
@@ -170,14 +170,14 @@ class Frame3(Frame):
 
     def editar_registro(self):
         try:
-            self.id_cliente = self.tabla.item(self.tabla.selection())['text']
+            self.id_cli = self.tabla.item(self.tabla.selection())['text']
 
             self.nombre_cliente = self.tabla.item(self.tabla.selection())['values'][0]
             self.apellido_cliente = self.tabla.item(self.tabla.selection())['values'][1]
             self.doc_cliente = self.tabla.item(self.tabla.selection())['values'][2]
             self.dir_cliente = self.tabla.item(self.tabla.selection())['values'][3]
-            self.mail_cliente = self.tabla.item(self.tabla.selection())['values'][4]
-            self.tel_cliente = self.tabla.item(self.tabla.selection())['values'][6]
+            self.mail_cliente = self.tabla.item(self.tabla.selection())['values'][5]
+            self.tel_cliente = self.tabla.item(self.tabla.selection())['values'][4]
 
             self.habilitar_campos()
             self.nombre_c.set(self.nombre_cliente)
@@ -202,11 +202,11 @@ class Frame3(Frame):
     }
 
         if self.id_cli == None:
-            guardar_cliente(persona)
+            guardar_cliente(persona,'clientes')
         else:
-            pass
-            #editar_cliente(persona, int(self.id_peli))
+            editar_cliente(persona,'clientes', int(self.id_cli))
 
+        self.id_cli = None
         self.tabla_cliente()
         self.bloquear_campos()
 
