@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 from .claseg import Frame
-from controlador.cliente_dao import leer_cliente, guardar_cliente, editar_cliente
+from controlador.cliente_dao import leer_cliente, guardar_cliente, editar_cliente, eliminar_cliente
 
 
 def open_vista_cliente(root):
@@ -164,7 +164,7 @@ class Frame3(Frame):
         self.btn_editar.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#1C500B',cursor='hand2',activebackground='#3FD83F',activeforeground='#000000')
         self.btn_editar.grid(row= 7, column=0,padx=10,pady=10, columnspan=2)
 
-        self.btn_delete = tk.Button(self, text='Borrar')
+        self.btn_delete = tk.Button(self, text='Borrar', command= self.borrar_cliente)
         self.btn_delete.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#A90A0A',cursor='hand2',activebackground='#F35B5B',activeforeground='#000000')
         self.btn_delete.grid(row= 7, column=2,padx=10,pady=10, columnspan=2)
 
@@ -209,6 +209,13 @@ class Frame3(Frame):
         self.id_cli = None
         self.tabla_cliente()
         self.bloquear_campos()
+    
+    def borrar_cliente(self):
+        try:
+            eliminar_cliente('clientes', int(self.tabla.item(self.tabla.selection())['text']))
+            self.tabla_cliente()
+        except:
+            pass
 
 
 

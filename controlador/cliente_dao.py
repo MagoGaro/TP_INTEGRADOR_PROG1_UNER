@@ -30,4 +30,16 @@ def editar_cliente(persona,archivo,id):
     with open(ruta, 'w') as f:
         json.dump(info, f, indent=4)
 
+def eliminar_cliente(archivo,id):
+    ruta = ruta_archivo(archivo)
+    info = leer_cliente(archivo)
+    borrar = None
+    for i, dato in enumerate(info):
+        if dato['id_cliente'] == id:
+            borrar = i
+            break
+
+    del info[borrar]
+    with open(ruta, 'w') as f:
+        json.dump(info, f, indent=4)
 
