@@ -2,7 +2,7 @@
     {
         "id_cliente": 1,
         "nombre": "Juan",
-        "apellido": "Pérez",
+        "apellido": "P\u00e9rez",
         "documento": "12345678",
         "direccion": "Calle Falsa 123",
         "telefono": "123-4567",
@@ -10,11 +10,29 @@
     },
     {
         "id_cliente": 2,
-        "nombre": "María",
-        "apellido": "Gómez",
+        "nombre": "Mar\u00eda",
+        "apellido": "G\u00f3mez",
         "documento": "87654321",
         "direccion": "Avenida Siempreviva 742",
         "telefono": "987-6543",
         "correo_electronico": "maria.gomez@example.com"
+    },
+    {
+        "id_cliente": 3,
+        "nombre": "asdas",
+        "apellido": "asdasd",
+        "documento": "dasda",
+        "direccion": "asda",
+        "telefono": "asdasd",
+        "correo_electronico": "sasdasd"
+    },
+    {
+        "id_cliente": 4,
+        "nombre": "Gabriel",
+        "apellido": "Roman",
+        "documento": "35136461",
+        "direccion": "calle falsa 321",
+        "telefono": "111111111",
+        "correo_electronico": "test@test.com"
     }
 ]
