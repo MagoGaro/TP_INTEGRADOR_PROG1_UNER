@@ -1,6 +1,5 @@
 from .controlador import ruta_archivo,leer_archivo, incrementar_id
 import json
-import base64
 
 def leer_cliente(nombre):
     return leer_archivo(nombre)

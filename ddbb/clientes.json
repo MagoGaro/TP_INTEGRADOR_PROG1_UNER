@@ -43,5 +43,14 @@
         "direccion": "calle falsa 321",
         "telefono": "2222222",
         "correo_electronico": "test@test.com"
+    },
+    {
+        "id_cliente": 8,
+        "nombre": "test33",
+        "apellido": "test33",
+        "documento": "test33",
+        "direccion": "test33",
+        "telefono": "test33",
+        "correo_electronico": "test33"
     }
 ]

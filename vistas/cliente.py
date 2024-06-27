@@ -212,10 +212,12 @@ class Frame3(Frame):
     
     def borrar_cliente(self):
         try:
-            eliminar_cliente('clientes', int(self.tabla.item(self.tabla.selection())['text']))
-            self.tabla_cliente()
-        except:
-            pass
+            response = messagebox.askyesno("Confirmar acción", "¿Desea eliminar al Cliente?")
+            if response:
+                eliminar_cliente('clientes', int(self.tabla.item(self.tabla.selection())['text']))
+                self.tabla_cliente()
+        except Exception as e:
+            messagebox.showerror("Error", f"{e}")
 
 
 
