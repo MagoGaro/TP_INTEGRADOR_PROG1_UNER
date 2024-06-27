@@ -1,7 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-from controlador.consultas_dao import Peliculas, listar_generos, listar_peliculas , guardar_peli, editar_peli, borrar_peli
-
 
 class Frame(tk.Frame):
     def __init__(self, root = None):

@@ -3,6 +3,7 @@ from tkinter import ttk
 
 from .cliente import open_vista_cliente
 from .vehiculos import open_vista_vehiculos
+from .transacciones import open_vista_transacciones
 from .claseg import Frame
 
 
@@ -23,6 +24,7 @@ def barrita_menu(root):
     #submenu
     menu_inicio.add_command(label='ABM Cliente', command = lambda: open_vista_cliente(root))
     menu_inicio.add_command(label='ABM Vehiculos', command = lambda: open_vista_vehiculos(root))
+    menu_inicio.add_command(label='ABM Transacciones', command = lambda: open_vista_transacciones(root))
     menu_inicio.add_command(label='Salir', command= root.destroy)
 
 
@@ -52,3 +54,7 @@ class Frame2(Frame):
         self.btn_vehiculos = tk.Button(self, text='Vechiculos', command=lambda: open_vista_vehiculos(root))
         self.btn_vehiculos.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#1C500B',cursor='hand2',activebackground='#3FD83F',activeforeground='#000000')
         self.btn_vehiculos.grid(row= 2, column=2,padx=10,pady=10)
+
+        self.btn_vehiculos = tk.Button(self, text='Transacciones', command=lambda: open_vista_transacciones(root))
+        self.btn_vehiculos.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#1C500B',cursor='hand2',activebackground='#3FD83F',activeforeground='#000000')
+        self.btn_vehiculos.grid(row= 3, column=0,padx=10,pady=10)

@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from .claseg import Frame
+from controlador.cliente_dao import leer_cliente
 
 
 def open_vista_cliente(root):
@@ -23,6 +24,7 @@ class Frame3(Frame):
 
         self.label_form()
         self.input_form()
+        self.botones_principales()
         self.tabla_cliente()
 
     def label_form(self):
@@ -74,21 +76,42 @@ class Frame3(Frame):
         self.direccion_c = tk.StringVar()
         self.entry_direccion = tk.Entry(self,textvariable=self.direccion_c)
         self.entry_direccion.config(width=25, font=('Arial',12))
-        self.entry_direccion.grid(row= 3, column=1,padx=10,pady=10, columnspan='3')
+        self.entry_direccion.grid(row= 3, column=1,padx=10,pady=10, columnspan='4')
 
         self.correo_c = tk.StringVar()
         self.entry_correo = tk.Entry(self,textvariable=self.correo_c)
         self.entry_correo.config(width=50, font=('Arial',12))
-        self.entry_correo.grid(row= 4, column=1,padx=10,pady=10, columnspan='4')
+        self.entry_correo.grid(row= 4, column=1,padx=10,pady=10, columnspan='6')
     
+    def botones_principales(self):
+        self.btn_alta = tk.Button(self, text='Nuevo')
+        self.btn_alta.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#1C500B',cursor='hand2',activebackground='#3FD83F',activeforeground='#000000')
+        self.btn_alta.grid(row= 5, column=0,padx=10,pady=10, columnspan='2')
+
+        self.btn_modi = tk.Button(self, text='Guardar')
+        self.btn_modi.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#0D2A83',cursor='hand2',activebackground='#7594F5',activeforeground='#000000',state='disabled')
+        self.btn_modi.grid(row= 5, column=2,padx=10,pady=10, columnspan='2')
+
+        self.btn_cance = tk.Button(self, text='Cancelar')
+        self.btn_cance.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#A90A0A',cursor='hand2',activebackground='#F35B5B',activeforeground='#000000',state='disabled')
+        self.btn_cance.grid(row= 5, column=4,padx=10,pady=10, columnspan='2')
+
     def tabla_cliente(self):
+
+        self.contenido_cli = leer_cliente('clientes')
+        self.contenido_cli.reverse()
+
         self.tabla = ttk.Treeview(self, columns=('Nombre','Apellido','Documento','Direccion','Telefono','Correo Electronico'))
-        self.tabla.grid(row=5,column=0,columnspan=6,sticky='nse')
+        self.tabla.grid(row=6,column=0,columnspan=6,sticky='nse')
 
         self.scroll = ttk.Scrollbar(self, orient='vertical', command=self.tabla.yview)
-        self.scroll.grid(row=5, column=4,sticky='nse')
+        self.scroll.grid(row=6, column=6,sticky='nse')
         self.tabla.configure(yscrollcommand= self.scroll.set)
         
+        for p in self.contenido_cli:
+            self.tabla.insert('',0,text=p['id_cliente'],
+                              values = (p['nombre'],p['apellido'],p['documento'],p['direccion'],p['telefono'],p['correo_electronico']))
+
         self.tabla.heading('#0',text='ID')
         self.tabla.heading('#1',text='Nombre')
         self.tabla.heading('#2',text='Apellido')
@@ -97,15 +120,21 @@ class Frame3(Frame):
         self.tabla.heading('#5',text='Telefono')
         self.tabla.heading('#6',text='Correo Electronico')
 
+        self.tabla.column('#0', width=50)
+        self.tabla.column('#1', width=100)
+        self.tabla.column('#2', width=100)
+        self.tabla.column('#3', width=80)
+        self.tabla.column('#4', width=120)
+        self.tabla.column('#5', width=80)
+        self.tabla.column('#6', width=150)
 
-        self.tabla.show("Direccion", show="hidden")
-        self.tabla.show("Telefono", show="hidden")
-        self.tabla.show("Correo Electronico", show="hidden")
+        self.btn_editar = tk.Button(self, text='Editar')
+        self.btn_editar.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#1C500B',cursor='hand2',activebackground='#3FD83F',activeforeground='#000000')
+        self.btn_editar.grid(row= 7, column=0,padx=10,pady=10, columnspan=2)
 
-        self.tabla.column('#1', minwidth=100)
-        self.tabla.column('#2', minwidth=100)
-        self.tabla.column('#3', minwidth=100)
-        self.tabla.column('#4', minwidth=150)
+        self.btn_delete = tk.Button(self, text='Borrar')
+        self.btn_delete.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#A90A0A',cursor='hand2',activebackground='#F35B5B',activeforeground='#000000')
+        self.btn_delete.grid(row= 7, column=2,padx=10,pady=10, columnspan=2)
 
     
 
