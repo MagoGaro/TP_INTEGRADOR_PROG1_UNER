@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 from vistas.claseg import Frame
+from controlador.vehiculos_dao import leer_vehiculo, guardar_vehiculo, editar_vehiculo, eliminar_vehiculo
+
 
 
 def open_vista_vehiculos(root):
@@ -22,6 +25,7 @@ class Frame4(Frame):
         super().__init__(root)
         self.root = root
         self.pack()
+        self.id_veh = None
 
         self.label_form()
         self.input_form()
@@ -68,44 +72,44 @@ class Frame4(Frame):
         
 
     def input_form(self):
-        self.patente_c = tk.StringVar()
-        self.entry_patente = tk.Entry(self,textvariable=self.patente_c)
-        self.entry_patente.config(width=20, font=('Arial',12))
+        self.patente_v = tk.StringVar()
+        self.entry_patente = tk.Entry(self,textvariable=self.patente_v)
+        self.entry_patente.config(width=20, font=('Arial',12),state='disabled')
         self.entry_patente.grid(row= 1, column=1,padx=10,pady=10, columnspan='2')
 
-        self.marca_c = tk.StringVar()
-        self.entry_marca = tk.Entry(self,textvariable=self.marca_c)
-        self.entry_marca.config(width=20, font=('Arial',12))
+        self.marca_v = tk.StringVar()
+        self.entry_marca = tk.Entry(self,textvariable=self.marca_v)
+        self.entry_marca.config(width=20, font=('Arial',12),state='disabled')
         self.entry_marca.grid(row= 1, column=4,padx=10,pady=10, columnspan='2')
         
-        self.modelo_c = tk.StringVar()
-        self.entry_modelo = tk.Entry(self,textvariable=self.modelo_c)
-        self.entry_modelo.config(width=20, font=('Arial',12))
+        self.modelo_v = tk.StringVar()
+        self.entry_modelo = tk.Entry(self,textvariable=self.modelo_v)
+        self.entry_modelo.config(width=20, font=('Arial',12),state='disabled')
         self.entry_modelo.grid(row= 2, column=4,padx=10,pady=10, columnspan='2')
 
-        self.tipo_c = tk.StringVar()
-        self.entry_tipo = tk.Entry(self,textvariable=self.tipo_c)
-        self.entry_tipo.config(width=20, font=('Arial',12))
+        self.tipo_v = tk.StringVar()
+        self.entry_tipo = tk.Entry(self,textvariable=self.tipo_v)
+        self.entry_tipo.config(width=20, font=('Arial',12),state='disabled')
         self.entry_tipo.grid(row= 2, column=1,padx=10,pady=10, columnspan='2')
 
-        self.anio_c = tk.StringVar()
-        self.entry_anio = tk.Entry(self,textvariable=self.anio_c)
-        self.entry_anio.config(width=20, font=('Arial',12))
+        self.anio_v = tk.StringVar()
+        self.entry_anio = tk.Entry(self,textvariable=self.anio_v)
+        self.entry_anio.config(width=20, font=('Arial',12),state='disabled')
         self.entry_anio.grid(row= 4, column=1,padx=10,pady=10, columnspan='2')
 
-        self.kilometraje_c = tk.StringVar()
-        self.entry_kilometraje = tk.Entry(self,textvariable=self.kilometraje_c)
-        self.entry_kilometraje.config(width=20, font=('Arial',12))
+        self.kilometraje_v = tk.StringVar()
+        self.entry_kilometraje = tk.Entry(self,textvariable=self.kilometraje_v)
+        self.entry_kilometraje.config(width=20, font=('Arial',12),state='disabled')
         self.entry_kilometraje.grid(row= 4, column=4,padx=10,pady=10, columnspan='4')
 
-        self.precio_compra_c = tk.StringVar()
-        self.entry_precio_compra = tk.Entry(self,textvariable=self.precio_compra_c)
-        self.entry_precio_compra.config(width=20, font=('Arial',12))
+        self.precio_compra_v = tk.StringVar()
+        self.entry_precio_compra = tk.Entry(self,textvariable=self.precio_compra_v)
+        self.entry_precio_compra.config(width=20, font=('Arial',12),state='disabled')
         self.entry_precio_compra.grid(row=6, column=1,padx=10,pady=10, columnspan='2')
 
-        self.precio_venta_c = tk.StringVar()
-        self.entry_precio_venta = tk.Entry(self,textvariable=self.precio_venta_c)
-        self.entry_precio_venta.config(width=20, font=('Arial',12))
+        self.precio_venta_v = tk.StringVar()
+        self.entry_precio_venta = tk.Entry(self,textvariable=self.precio_venta_v)
+        self.entry_precio_venta.config(width=20, font=('Arial',12),state='disabled')
         self.entry_precio_venta.grid(row= 6, column=4,padx=10,pady=10, columnspan='3')
 
         self.estado_var = tk.StringVar()
@@ -124,8 +128,14 @@ class Frame4(Frame):
         self.btn_cance = tk.Button(self, text='Cancelar')
         self.btn_cance.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#A90A0A',cursor='hand2',activebackground='#F35B5B',activeforeground='#000000',state='disabled')
         self.btn_cance.grid(row=9, column=4, padx=(5, 5), pady=5)
+    
+  
 
     def tabla_vehiculos(self):
+
+        self.contenido_veh = leer_vehiculo('vehiculos')
+
+
         self.tabla = ttk.Treeview(self, columns=('Nº de Patente','Marca','Tipo','Anio','Modelo','Kilometraje','Precio Compra', 'Precio Venta', 'Estado'), show='headings')
         self.tabla.grid(row=10, column=0, columnspan=6, sticky='nsew')
 
@@ -133,6 +143,10 @@ class Frame4(Frame):
         self.scroll.grid(row=10, column=6, sticky='ns')
         self.tabla.configure(yscrollcommand=self.scroll.set)
 
+        for p in self.contenido_veh:
+            self.tabla.insert('',0,text=p['id_vehiculo'],
+                        values = (p['patente'],p['marca'],p['modelo'],p['tipo'],p['año'],p['kilometraje'],p['precio_compra'],p['precio_venta'],p['estado']))
+        
         self.tabla.heading('#0', text='ID')
         self.tabla.heading('#1', text='Nº de Patente')
         self.tabla.heading('#2', text='Marca')
@@ -159,13 +173,15 @@ class Frame4(Frame):
         self.btn_editar = tk.Button(self, text='Editar')
         self.btn_editar.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#1C500B',cursor='hand2',activebackground='#3FD83F',activeforeground='#000000')
         self.btn_editar.grid(row=11, column=0, columnspan=2, padx=10, pady=10)
+        
 
-        self.btn_delete = tk.Button(self, text='Borrar')
+        self.btn_delete = tk.Button(self, text='Borrar' )
         self.btn_delete.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#A90A0A',cursor='hand2',activebackground='#F35B5B',activeforeground='#000000')
         self.btn_delete.grid(row=11, column=3, columnspan=2, padx=10, pady=10)
 
-      
-        
+
+
+    
        
 
 
