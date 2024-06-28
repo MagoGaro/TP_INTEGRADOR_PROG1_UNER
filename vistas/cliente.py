@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 from .claseg import Frame
-from controlador.cliente_dao import leer_cliente, guardar_cliente, editar_cliente, eliminar_cliente
+from controlador.cliente_dao import leer_cliente, guardar_cliente, editar_cliente, eliminar_cliente, buscar_cliente
 
 
 def open_vista_cliente(root):
@@ -14,8 +14,6 @@ def open_vista_cliente(root):
     app = Frame3(root = vista_cliente)
     app.config(background='#F7F9AF')
 
-    close_button = tk.Button(vista_cliente, text="Close", command=vista_cliente.destroy)
-    close_button.pack()
 
 class Frame3(Frame):
     def __init__(self, root = None):
@@ -168,6 +166,17 @@ class Frame3(Frame):
         self.btn_delete.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#A90A0A',cursor='hand2',activebackground='#F35B5B',activeforeground='#000000')
         self.btn_delete.grid(row= 7, column=2,padx=10,pady=10, columnspan=2)
 
+        self.buscar_c = tk.StringVar()
+        self.buscar_c.set("example@example.com")
+        self.entry_buscar = tk.Entry(self,textvariable=self.buscar_c)
+        self.entry_buscar.config(width=30, font=('Arial',12))
+        self.entry_buscar.grid(row= 7, column=4,padx=10,pady=10, columnspan='2')
+
+        self.btn_buscar = tk.Button(self, text='Buscar', command= self.buscar_registro)
+        self.btn_buscar.config(width= 10,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#7B7B78',cursor='hand2',activebackground='#C6C6C0',activeforeground='#FFFFFF')
+        self.btn_buscar.grid(row= 7, column=7,padx=10,pady=10)
+
+
     def editar_registro(self):
         try:
             self.id_cli = self.tabla.item(self.tabla.selection())['text']
@@ -218,6 +227,26 @@ class Frame3(Frame):
                 self.tabla_cliente()
         except Exception as e:
             messagebox.showerror("Error", f"{e}")
+    
+    def buscar_registro(self):
+        persona = buscar_cliente('clientes',self.buscar_c.get())
+
+        
+        if persona != None:
+            self.habilitar_campos()
+            self.nombre_c.set(persona['nombre'])
+            self.apellido_c.set(persona['apellido'])
+            self.documento_c.set(persona['documento'])
+            self.direccion_c.set(persona['direccion'])
+            self.telefono_c.set(persona['telefono'])
+            self.correo_c.set(persona['correo_electronico'])
+
+            self.id_cli = persona['id_cliente']
+
+            self.buscar_c.set('')
+        else:
+            messagebox.showerror("Error", f"El correo {self.buscar_c.get()}. No esta registrado")
+
 
 
 

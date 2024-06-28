@@ -42,3 +42,14 @@ def eliminar_cliente(archivo,id):
     with open(ruta, 'w') as f:
         json.dump(info, f, indent=4)
 
+def buscar_cliente(archivo, mail):
+    info = leer_cliente(archivo)
+
+    persona = None
+    for i in info:
+        if i['correo_electronico'] == mail:
+            persona = i
+            break
+
+    return persona
+
