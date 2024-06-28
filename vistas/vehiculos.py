@@ -175,7 +175,7 @@ class Frame4(Frame):
         self.contenido_veh.reverse()
 
 
-        self.tabla = ttk.Treeview(self, columns=('Nº de Patente','Marca','Tipo','Anio','Modelo','Kilometraje','Precio Compra', 'Precio Venta', 'Estado'), show='headings')
+        self.tabla = ttk.Treeview(self, columns=('Nº de Patente','Marca','Tipo','Anio','Modelo','Kilometraje','Precio Compra', 'Precio Venta', 'Estado'))
         self.tabla.grid(row=10, column=0, columnspan=6, sticky='nsew')
 
         self.scroll = ttk.Scrollbar(self, orient='vertical', command=self.tabla.yview)
@@ -184,7 +184,7 @@ class Frame4(Frame):
 
         for p in self.contenido_veh:
             self.tabla.insert('',0,text=p['id_vehiculo'],
-                        values = (p['patente'],p['marca'],p['modelo'],p['tipo'],p['año'],p['kilometraje'],p['precio_compra'],p['precio_venta'],p['estado']))
+                                values = (p['patente'],p['marca'],p['modelo'],p['tipo'],p['año'],p['kilometraje'],p['precio_compra'],p['precio_venta'],p['estado']))
         
         self.tabla.heading('#0', text='ID')
         self.tabla.heading('#1', text='Nº de Patente')
@@ -207,7 +207,7 @@ class Frame4(Frame):
         self.tabla.column('#6', minwidth=100, width=110)
         self.tabla.column('#7', minwidth=100, width=110)
         self.tabla.column('#8', minwidth=80, width=90)
-        self.tabla.column('#8', minwidth=80, width=90)
+        self.tabla.column('#9', minwidth=80, width=90)
 
         self.btn_editar = tk.Button(self, text='Editar', command= self.editar_registro)
         self.btn_editar.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#1C500B',cursor='hand2',activebackground='#3FD83F',activeforeground='#000000')
@@ -251,7 +251,7 @@ class Frame4(Frame):
             messagebox.showerror("Error", f"Error al editar el vehículo: {e}")
 
     def guardar_campos(self):
-        vehiculo = {
+        auto = {
         "id_vehiculo": '',
         "patente": self.patente_v.get(),
         "marca": self.marca_v.get(),
@@ -264,9 +264,9 @@ class Frame4(Frame):
         "estado": self.estado_var.get(),
     }
         if self.id_veh == None:
-            guardar_vehiculo(vehiculo, 'vehiculos')
+            guardar_vehiculo(auto, 'vehiculos')
         else:
-            editar_vehiculo(vehiculo, 'vehiculos', int(self.id_veh))
+            editar_vehiculo(auto, 'vehiculos', int(self.id_veh))
 
         self.id_veh = None
         self.tabla_vehiculos()
