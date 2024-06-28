@@ -4,28 +4,28 @@ import json
 def leer_vehiculo(nombre):
     return leer_archivo(nombre)
 
-def guardar_vehiculo(vehiculo, archivo):
+def guardar_vehiculo(auto, archivo):
     ruta = ruta_archivo(archivo)
     info = leer_vehiculo(archivo)
-    vehiculo['id_vehiculo'] = incrementar_id('ids', 'vehiculo')
-    info.append(vehiculo)
+    auto['id_vehiculo'] = incrementar_id('ids', 'vehiculo')
+    info.append(auto)
 
     with open(ruta, 'w') as f:
         json.dump(info, f, indent=4)
 
-def editar_vehiculo(vehiculo, archivo, id):
+def editar_vehiculo(auto, archivo, id):
     ruta = ruta_archivo(archivo)
     info = leer_vehiculo(archivo)
 
     for p in info:
         if p ['id_vehiculo'] == id:
-            p["marca"] = vehiculo['marca']
-            p["modelo"] = vehiculo['modelo']
-            p["tipo"] = vehiculo['tipo']
-            p["patente"] = vehiculo['patente']
-            p["año"] = vehiculo['año']
-            p["precio_compra"] = vehiculo['precio_compra']
-            p["precio_venta"] = vehiculo['precio_venta']
+            p["marca"] = auto['marca']
+            p["modelo"] = auto['modelo']
+            p["tipo"] = auto['tipo']
+            p["patente"] = auto['patente']
+            p["año"] = auto['año']
+            p["precio_compra"] = auto['precio_compra']
+            p["precio_venta"] = auto['precio_venta']
     
     with open(ruta, 'w') as f:
         json.dump(info, f, indent=4)
