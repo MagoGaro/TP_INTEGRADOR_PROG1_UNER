@@ -1,26 +1,50 @@
 [
-  {
-    "id_vehiculo": 1,
-    "patente": "ABC123",
-    "marca": "Toyota",
-    "modelo": "Corolla",
-    "tipo": "Sedán",
-    "año": 2015,
-    "kilometraje": 75000,
-    "precio_compra": 12000,
-    "precio_venta": 15000,
-    "estado": "Disponible"
-  },
-  {
-    "id_vehiculo": 2,
-    "patente": "XYZ789",
-    "marca": "Ford",
-    "modelo": "Focus",
-    "tipo": "Hatchback",
-    "año": 2017,
-    "kilometraje": 50000,
-    "precio_compra": 14000,
-    "precio_venta": 17000,
-    "estado": "Reservado"
-  }
+    {
+        "id_vehiculo": 1,
+        "patente": "ABC123",
+        "marca": "Toyota",
+        "modelo": "Sed\u00e1n",
+        "tipo": "2015",
+        "a\u00f1o": "Corolla",
+        "kilometraje": 75000,
+        "precio_compra": "12000",
+        "precio_venta": "15001",
+        "estado": "Disponible"
+    },
+    {
+        "id_vehiculo": 2,
+        "patente": "XYZ789",
+        "marca": "Ford",
+        "modelo": "Hatchback",
+        "tipo": "2017",
+        "a\u00f1o": "Focus",
+        "kilometraje": 50000,
+        "precio_compra": "14000",
+        "precio_venta": "17000",
+        "estado": "Reservado"
+    },
+    {
+        "id_vehiculo": 3,
+        "patente": "XYZ789",
+        "marca": "Ford",
+        "modelo": "Hatchback",
+        "tipo": "2017",
+        "a\u00f1o": "Focus",
+        "kilometraje": "50000",
+        "precio_compra": "14000",
+        "precio_venta": "17000",
+        "estado": "Reservado"
+    },
+    {
+        "id_vehiculo": 4,
+        "patente": "kjh785",
+        "marca": "Renault",
+        "modelo": "clio",
+        "tipo": "sedan",
+        "a\u00f1o": "1998",
+        "kilometraje": "14500",
+        "precio_compra": "15600",
+        "precio_venta": "14000",
+        "estado": "Estado"
+    }
 ]

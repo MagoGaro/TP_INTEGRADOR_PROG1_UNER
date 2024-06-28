@@ -117,15 +117,15 @@ class Frame4(Frame):
         self.entry_estado.grid(row=8, column=1, padx=10, pady=10)
     
     def botones_principales(self):
-        self.btn_alta = tk.Button(self, text='Nuevo')
+        self.btn_alta = tk.Button(self, text='Nuevo', command= self.habilitar_campos)
         self.btn_alta.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#1C500B',cursor='hand2',activebackground='#3FD83F',activeforeground='#000000')
         self.btn_alta.grid(row=9, column=0, padx=(5, 5), pady=5)
 
-        self.btn_modi = tk.Button(self, text='Guardar')
+        self.btn_modi = tk.Button(self, text='Guardar', command=self.guardar_campos)
         self.btn_modi.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#0D2A83',cursor='hand2',activebackground='#7594F5',activeforeground='#000000',state='disabled')
         self.btn_modi.grid(row=9, column=2, padx=(5, 5), pady=5)
 
-        self.btn_cance = tk.Button(self, text='Cancelar')
+        self.btn_cance = tk.Button(self, text='Cancelar', command = self.bloquear_campos)
         self.btn_cance.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#A90A0A',cursor='hand2',activebackground='#F35B5B',activeforeground='#000000',state='disabled')
         self.btn_cance.grid(row=9, column=4, padx=(5, 5), pady=5)
     
@@ -143,9 +143,36 @@ class Frame4(Frame):
         self.btn_cance.config(state='normal')
         self.btn_alta.config(state='disabled')
 
+    def bloquear_campos(self):
+        self.entry_patente.config(state='disabled')
+        self.entry_marca.config(state='disabled')
+        self.entry_tipo.config(state='disabled')
+        self.entry_anio.config(state='disabled')
+        self.entry_modelo.config(state='disabled')
+        self.entry_kilometraje.config(state='disabled')
+        self.entry_precio_compra.config(state='disabled')
+        self.entry_precio_venta.config(state='disabled')
+        self.entry_estado.config(state='disabled')
+
+        self.patente_v.set('')
+        self.marca_v.set('')
+        self.tipo_v.set('')
+        self.anio_v.set('')
+        self.modelo_v.set('')
+        self.kilometraje_v.set('')
+        self.precio_compra_v.set('')
+        self.precio_venta_v.set('')
+        self.estado_var.set('Disponible')
+
+        self.btn_modi.config(state='disabled')
+        self.btn_cance.config(state='disabled')
+        self.btn_alta.config(state='normal')
+      
+
     def tabla_vehiculos(self):
 
         self.contenido_veh = leer_vehiculo('vehiculos')
+        self.contenido_veh.reverse()
 
 
         self.tabla = ttk.Treeview(self, columns=('Nº de Patente','Marca','Tipo','Anio','Modelo','Kilometraje','Precio Compra', 'Precio Venta', 'Estado'), show='headings')
@@ -187,7 +214,7 @@ class Frame4(Frame):
         self.btn_editar.grid(row=11, column=0, columnspan=2, padx=10, pady=10)
         
 
-        self.btn_delete = tk.Button(self, text='Borrar' )
+        self.btn_delete = tk.Button(self, text='Borrar', command= self.borrar_vehiculos )
         self.btn_delete.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#A90A0A',cursor='hand2',activebackground='#F35B5B',activeforeground='#000000')
         self.btn_delete.grid(row=11, column=3, columnspan=2, padx=10, pady=10)
 
@@ -223,8 +250,39 @@ class Frame4(Frame):
         except Exception as e:
             messagebox.showerror("Error", f"Error al editar el vehículo: {e}")
 
+    def guardar_campos(self):
+        vehiculo = {
+        "id_vehiculo": '',
+        "patente": self.patente_v.get(),
+        "marca": self.marca_v.get(),
+        "modelo": self.modelo_v.get(),
+        "tipo": self.tipo_v.get(),
+        "año": self.anio_v.get(),
+        "kilometraje": self.kilometraje_v.get(),
+        "precio_compra": self.precio_compra_v.get(),
+        "precio_venta": self.precio_venta_v.get(),
+        "estado": self.estado_var.get(),
+    }
+        if self.id_veh == None:
+            guardar_vehiculo(vehiculo, 'vehiculos')
+        else:
+            editar_vehiculo(vehiculo, 'vehiculos', int(self.id_veh))
 
+        self.id_veh = None
+        self.tabla_vehiculos()
+        self.bloquear_campos()
     
+
+    def borrar_vehiculos(self):
+        try:
+            response = messagebox.askyesno("Confirmar accion", "Desea eliminar un vehiculo?")
+            if response:
+                eliminar_vehiculo('vehiculos', int(self.tabla.item(self.tabla.selection())['text']))
+                self.tabla_vehiculos()
+        except Exception as e:
+            messagebox.showerror("Error", f"Error al eliminar el vehículo: {e}")
+
+
        
 
 

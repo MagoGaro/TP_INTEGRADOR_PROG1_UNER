@@ -21,9 +21,9 @@ def editar_vehiculo(vehiculo, archivo, id):
         if p ['id_vehiculo'] == id:
             p["marca"] = vehiculo['marca']
             p["modelo"] = vehiculo['modelo']
-            p["color"] = vehiculo['color']
+            p["tipo"] = vehiculo['tipo']
             p["patente"] = vehiculo['patente']
-            p["año_fabricacion"] = vehiculo['año_fabricacion']
+            p["año"] = vehiculo['año']
             p["precio_compra"] = vehiculo['precio_compra']
             p["precio_venta"] = vehiculo['precio_venta']
     
