@@ -25,7 +25,8 @@ class Frame4(Frame):
 
         self.label_form()
         self.input_form()
-        self.tabla_cliente()
+        self.tabla_vehiculos()
+        self.botones_principales()
 
     def label_form(self):
         self.label_patente = tk.Label(self, text="Nº de Patente:")
@@ -111,36 +112,61 @@ class Frame4(Frame):
         self.entry_estado = ttk.OptionMenu(self, self.estado_var, "Estado", "Disponible", "Reservado", "Vendido")
         self.entry_estado.grid(row=8, column=1, padx=10, pady=10)
     
-    def tabla_cliente(self):
+    def botones_principales(self):
+        self.btn_alta = tk.Button(self, text='Nuevo')
+        self.btn_alta.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#1C500B',cursor='hand2',activebackground='#3FD83F',activeforeground='#000000')
+        self.btn_alta.grid(row=9, column=0, padx=(5, 5), pady=5)
+
+        self.btn_modi = tk.Button(self, text='Guardar')
+        self.btn_modi.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#0D2A83',cursor='hand2',activebackground='#7594F5',activeforeground='#000000',state='disabled')
+        self.btn_modi.grid(row=9, column=2, padx=(5, 5), pady=5)
+
+        self.btn_cance = tk.Button(self, text='Cancelar')
+        self.btn_cance.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#A90A0A',cursor='hand2',activebackground='#F35B5B',activeforeground='#000000',state='disabled')
+        self.btn_cance.grid(row=9, column=4, padx=(5, 5), pady=5)
+
+    def tabla_vehiculos(self):
         self.tabla = ttk.Treeview(self, columns=('Nº de Patente','Marca','Tipo','Anio','Modelo','Kilometraje','Precio Compra', 'Precio Venta', 'Estado'), show='headings')
-        self.tabla.grid(row=9, column=0, columnspan=6, sticky='nsew')
+        self.tabla.grid(row=10, column=0, columnspan=6, sticky='nsew')
 
         self.scroll = ttk.Scrollbar(self, orient='vertical', command=self.tabla.yview)
-        self.scroll.grid(row=9, column=6, sticky='ns')
+        self.scroll.grid(row=10, column=6, sticky='ns')
         self.tabla.configure(yscrollcommand=self.scroll.set)
 
-        self.tabla.heading('Nº de Patente', text='Nº de Patente')
-        self.tabla.heading('Marca', text='Marca')
-        self.tabla.heading('Tipo', text='Tipo')
-        self.tabla.heading('Anio', text='Año')
-        self.tabla.heading('Modelo', text='Modelo')
-        self.tabla.heading('Kilometraje', text='Kilometraje')
-        self.tabla.heading('Precio Compra', text='Precio Compra')
-        self.tabla.heading('Precio Venta', text='Precio Venta')
-        self.tabla.heading('Estado', text='Estado')
+        self.tabla.heading('#0', text='ID')
+        self.tabla.heading('#1', text='Nº de Patente')
+        self.tabla.heading('#2', text='Marca')
+        self.tabla.heading('#3', text='Tipo')
+        self.tabla.heading('#4', text='Año')
+        self.tabla.heading('#5', text='Modelo')
+        self.tabla.heading('#6', text='Kilometraje')
+        self.tabla.heading('#7', text='Precio Compra')
+        self.tabla.heading('#8', text='Precio Venta')
+        self.tabla.heading('#9', text='Estado')
 
         
-        self.tabla.column('Nº de Patente', minwidth=80, width=100)
-        self.tabla.column('Marca', minwidth=80, width=100)
-        self.tabla.column('Tipo', minwidth=60, width=80)
-        self.tabla.column('Anio', minwidth=60, width=80)
-        self.tabla.column('Modelo', minwidth=80, width=100)
-        self.tabla.column('Kilometraje', minwidth=80, width=100)
-        self.tabla.column('Precio Compra', minwidth=100, width=110)
-        self.tabla.column('Precio Venta', minwidth=100, width=110)
-        self.tabla.column('Estado', minwidth=80, width=90)
+        self.tabla.column('#0', minwidth=80, width=100)
+        self.tabla.column('#1', minwidth=80, width=100)
+        self.tabla.column('#2', minwidth=60, width=80)
+        self.tabla.column('#3', minwidth=60, width=80)
+        self.tabla.column('#4', minwidth=80, width=100)
+        self.tabla.column('#5', minwidth=80, width=100)
+        self.tabla.column('#6', minwidth=100, width=110)
+        self.tabla.column('#7', minwidth=100, width=110)
+        self.tabla.column('#8', minwidth=80, width=90)
+        self.tabla.column('#8', minwidth=80, width=90)
 
+        self.btn_editar = tk.Button(self, text='Editar')
+        self.btn_editar.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#1C500B',cursor='hand2',activebackground='#3FD83F',activeforeground='#000000')
+        self.btn_editar.grid(row=11, column=0, columnspan=2, padx=10, pady=10)
+
+        self.btn_delete = tk.Button(self, text='Borrar')
+        self.btn_delete.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#A90A0A',cursor='hand2',activebackground='#F35B5B',activeforeground='#000000')
+        self.btn_delete.grid(row=11, column=3, columnspan=2, padx=10, pady=10)
+
+      
         
+       
 
 
 
