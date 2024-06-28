@@ -4,6 +4,8 @@ from tkinter import ttk
 from .cliente import open_vista_cliente
 from .vehiculos import open_vista_vehiculos
 from .transacciones import open_vista_transacciones
+from .licencia import open_vista_licencia
+from .creadores import open_vista_creadores
 from .claseg import Frame
 
 
@@ -11,6 +13,7 @@ def barrita_menu(root):
     barra = tk.Menu(root)
     root.config(menu = barra, width = 300 , height = 300)
     menu_inicio = tk.Menu(barra, tearoff=0)
+    menu_acerca = tk.Menu(barra, tearoff=0)
 
     #  niveles  #
 
@@ -18,8 +21,7 @@ def barrita_menu(root):
 
     barra.add_cascade(label='Inicio', menu = menu_inicio)
     barra.add_cascade(label='Consultas')
-    barra.add_cascade(label='Acerca de..')
-    barra.add_cascade(label='Ayuda')
+    barra.add_cascade(label='Acerca de..', menu = menu_acerca)
 
     #submenu
     menu_inicio.add_command(label='ABM Cliente', command = lambda: open_vista_cliente(root))
@@ -27,6 +29,8 @@ def barrita_menu(root):
     menu_inicio.add_command(label='ABM Transacciones', command = lambda: open_vista_transacciones(root))
     menu_inicio.add_command(label='Salir', command= root.destroy)
 
+    menu_acerca.add_command(label='Licencia', command = lambda: open_vista_licencia(root))
+    menu_acerca.add_command(label='Creadores', command = lambda: open_vista_creadores(root))
 
 class Frame2(Frame):
     def __init__(self, root = None):
