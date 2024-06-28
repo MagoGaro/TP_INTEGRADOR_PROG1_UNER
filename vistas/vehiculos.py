@@ -129,7 +129,19 @@ class Frame4(Frame):
         self.btn_cance.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#A90A0A',cursor='hand2',activebackground='#F35B5B',activeforeground='#000000',state='disabled')
         self.btn_cance.grid(row=9, column=4, padx=(5, 5), pady=5)
     
-  
+    def habilitar_campos(self):
+        self.entry_patente.config(state='normal')
+        self.entry_marca.config(state='normal')
+        self.entry_tipo.config(state='normal')
+        self.entry_anio.config(state='normal')
+        self.entry_modelo.config(state='normal')
+        self.entry_kilometraje.config(state='normal')
+        self.entry_precio_compra.config(state='normal')
+        self.entry_precio_venta.config(state='normal')
+        self.entry_estado.config(state='normal')
+        self.btn_modi.config(state='normal')
+        self.btn_cance.config(state='normal')
+        self.btn_alta.config(state='disabled')
 
     def tabla_vehiculos(self):
 
@@ -170,7 +182,7 @@ class Frame4(Frame):
         self.tabla.column('#8', minwidth=80, width=90)
         self.tabla.column('#8', minwidth=80, width=90)
 
-        self.btn_editar = tk.Button(self, text='Editar')
+        self.btn_editar = tk.Button(self, text='Editar', command= self.editar_registro)
         self.btn_editar.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#1C500B',cursor='hand2',activebackground='#3FD83F',activeforeground='#000000')
         self.btn_editar.grid(row=11, column=0, columnspan=2, padx=10, pady=10)
         
@@ -179,6 +191,37 @@ class Frame4(Frame):
         self.btn_delete.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#A90A0A',cursor='hand2',activebackground='#F35B5B',activeforeground='#000000')
         self.btn_delete.grid(row=11, column=3, columnspan=2, padx=10, pady=10)
 
+    def editar_registro(self):
+        try:
+            selected_item = self.tabla.selection()
+            if not selected_item:
+                raise Exception("No se ha seleccionado ningún registro")
+
+            self.id_veh = self.tabla.item(selected_item)['text']
+
+            self.patente_veh = self.tabla.item(selected_item)['values'][0]
+            self.marca_veh = self.tabla.item(selected_item)['values'][1]
+            self.tipo_veh = self.tabla.item(selected_item)['values'][2]
+            self.anio_veh = self.tabla.item(selected_item)['values'][3]
+            self.modelo_veh = self.tabla.item(selected_item)['values'][4]
+            self.kilometraje_veh = self.tabla.item(selected_item)['values'][5]
+            self.valor_compra_veh = self.tabla.item(selected_item)['values'][6]
+            self.valor_venta_veh = self.tabla.item(selected_item)['values'][7]
+            self.estado_veh = self.tabla.item(selected_item)['values'][8]
+
+            self.habilitar_campos()
+            self.patente_v.set(self.patente_veh)
+            self.marca_v.set(self.marca_veh)
+            self.tipo_v.set(self.tipo_veh)
+            self.anio_v.set(self.anio_veh)
+            self.modelo_v.set(self.modelo_veh)
+            self.kilometraje_v.set(self.kilometraje_veh)
+            self.precio_compra_v.set(self.valor_compra_veh)
+            self.precio_venta_v.set(self.valor_venta_veh)
+            self.estado_var.set(self.estado_veh)
+
+        except Exception as e:
+            messagebox.showerror("Error", f"Error al editar el vehículo: {e}")
 
 
     
