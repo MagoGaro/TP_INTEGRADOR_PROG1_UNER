@@ -211,22 +211,22 @@ class Frame4(Frame):
 
         self.btn_editar = tk.Button(self, text='Editar', command= self.editar_registro)
         self.btn_editar.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#1C500B',cursor='hand2',activebackground='#3FD83F',activeforeground='#000000')
-        self.btn_editar.grid(row=11, column=0, columnspan=2, padx=10, pady=10)
+        self.btn_editar.grid(row=11, column=0, padx=10, pady=10,)
         
 
         self.btn_delete = tk.Button(self, text='Borrar', command= self.borrar_vehiculos )
         self.btn_delete.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#A90A0A',cursor='hand2',activebackground='#F35B5B',activeforeground='#000000')
-        self.btn_delete.grid(row=11, column=2, columnspan=2, padx=10, pady=10)
+        self.btn_delete.grid(row=11, column=1, padx=10, pady=10)
 
         self.buscar_v = tk.StringVar()
         self.buscar_v.set("ABC123")
         self.entry_buscar = tk.Entry(self,textvariable=self.buscar_v)
-        self.entry_buscar.config(width=30, font=('Arial',12))
-        self.entry_buscar.grid(row=11, column=4,padx=10,pady=10, columnspan='2')
+        self.entry_buscar.config(width=20, font=('Arial',12))
+        self.entry_buscar.grid(row=11, column=2, padx=10, pady=10)
 
         self.btn_buscar = tk.Button(self, text='Buscar', command= self.buscar_vehiculo)
         self.btn_buscar.config(width= 10,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#7B7B78',cursor='hand2',activebackground='#C6C6C0',activeforeground='#FFFFFF')
-        self.btn_buscar.grid(row=11, column=7,padx=10,pady=10)
+        self.btn_buscar.grid(row=11, column=3, padx=10, pady=10)
 
     def editar_registro(self):
         try:
