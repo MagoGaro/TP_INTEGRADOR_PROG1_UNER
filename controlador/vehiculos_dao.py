@@ -43,3 +43,13 @@ def eliminar_vehiculo(archivo, id):
     with open(ruta, 'w') as f:
         json.dump(info, f, indent=4)
         
+def buscar_auto(archivo, patente):
+    info = leer_vehiculo(archivo)
+
+    auto = None
+    for i in info:
+        if i['patente'] == patente:
+            auto = i
+            break
+
+    return auto

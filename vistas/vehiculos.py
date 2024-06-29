@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 from vistas.claseg import Frame
-from controlador.vehiculos_dao import leer_vehiculo, guardar_vehiculo, editar_vehiculo, eliminar_vehiculo
+from controlador.vehiculos_dao import leer_vehiculo, guardar_vehiculo, editar_vehiculo, eliminar_vehiculo, buscar_auto
 
 
 
@@ -216,7 +216,17 @@ class Frame4(Frame):
 
         self.btn_delete = tk.Button(self, text='Borrar', command= self.borrar_vehiculos )
         self.btn_delete.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#A90A0A',cursor='hand2',activebackground='#F35B5B',activeforeground='#000000')
-        self.btn_delete.grid(row=11, column=3, columnspan=2, padx=10, pady=10)
+        self.btn_delete.grid(row=11, column=2, columnspan=2, padx=10, pady=10)
+
+        self.buscar_v = tk.StringVar()
+        self.buscar_v.set("ABC123")
+        self.entry_buscar = tk.Entry(self,textvariable=self.buscar_v)
+        self.entry_buscar.config(width=30, font=('Arial',12))
+        self.entry_buscar.grid(row=11, column=4,padx=10,pady=10, columnspan='2')
+
+        self.btn_buscar = tk.Button(self, text='Buscar', command= self.buscar_vehiculo)
+        self.btn_buscar.config(width= 10,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#7B7B78',cursor='hand2',activebackground='#C6C6C0',activeforeground='#FFFFFF')
+        self.btn_buscar.grid(row=11, column=7,padx=10,pady=10)
 
     def editar_registro(self):
         try:
@@ -281,6 +291,29 @@ class Frame4(Frame):
                 self.tabla_vehiculos()
         except Exception as e:
             messagebox.showerror("Error", f"Error al eliminar el vehículo: {e}")
+
+    def buscar_vehiculo(self):
+        auto = buscar_auto('vehiculos',self.buscar_v.get())
+
+        
+        if auto != None:
+            self.habilitar_campos()
+            self.patente_v.set(auto['patente'])
+            self.marca_v.set(auto['marca'])
+            self.tipo_v.set(auto['tipo'])
+            self.anio_v.set(auto['año'])
+            self.modelo_v.set(auto['modelo'])
+            self.kilometraje_v.set(auto['kilometraje'])
+            self.precio_compra_v.set(auto['precio_compra'])
+            self.precio_venta_v.set(auto['precio_venta'])
+            self.estado_var.set(auto['estado'])
+
+            self.id_cli = auto['id_vehiculo']
+
+            self.buscar_v.set('')
+        else:
+            messagebox.showerror("Error", f"La patente {self.buscar_v.get()}. No esta registrada")
+
 
 
        
