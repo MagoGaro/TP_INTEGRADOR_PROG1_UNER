@@ -177,20 +177,20 @@ class Frame10(Frame):
         try:
             self.id_tra = self.tabla.item(self.tabla.selection())['text']
 
-            self.nombre_cliente = self.tabla.item(self.tabla.selection())['values'][0]
-            self.apellido_cliente = self.tabla.item(self.tabla.selection())['values'][1]
-            self.doc_cliente = self.tabla.item(self.tabla.selection())['values'][2]
-            self.dir_cliente = self.tabla.item(self.tabla.selection())['values'][3]
-            self.mail_cliente = self.tabla.item(self.tabla.selection())['values'][5]
-            self.tel_cliente = self.tabla.item(self.tabla.selection())['values'][4]
+            self.montito = self.tabla.item(self.tabla.selection())['values'][4]
+            self.id_v = self.tabla.item(self.tabla.selection())['values'][0]
+            self.id_c = self.tabla.item(self.tabla.selection())['values'][1]
+            self.obv = self.tabla.item(self.tabla.selection())['values'][5]
+            self.fech = self.tabla.item(self.tabla.selection())['values'][3]
+            self.tipo = self.tabla.item(self.tabla.selection())['values'][2]
 
             self.habilitar_campos()
-            self.nombre_c.set(self.nombre_cliente)
-            self.apellido_c.set(self.apellido_cliente)
-            self.documento_c.set(self.doc_cliente)
-            self.direccion_c.set(self.dir_cliente)
-            self.telefono_c.set(self.tel_cliente)
-            self.correo_c.set(self.mail_cliente)
+            self.monto_c.set(self.montito)
+            self.observaciones_c.set(self.obv)
+            self.fecha_c.set(self.fech)
+            self.tipo_transaccion_c.set(self.tipo)
+            self.id_de_cliente_c.set(self.id_c)
+            self.id_de_vehículo_c.set(self.id_v)
 
         except Exception as e:
             messagebox.showerror("Error", f"{e}")
