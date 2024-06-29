@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
-from vistas.claseg import Frame
+from .claseg import Frame
 from controlador.transacciones_dao import leer_transacciones, guardar_transacciones, editar_transacciones
 
 
