@@ -73,24 +73,24 @@ class Frame10(Frame):
         self.entry_tipo_de_transaccion = ttk.Combobox(self, state="readonly")
         self.entry_tipo_de_transaccion['values'] = self.tipo_t
         self.entry_tipo_de_transaccion.current(0)
-        self.entry_tipo_de_transaccion.config(width=25, state='disabled',font=('Arial',12))
+        self.entry_tipo_de_transaccion.config(width=15, state='disabled',font=('Arial',12))
         self.entry_tipo_de_transaccion.bind("<<ComboboxSelected>>")
         self.entry_tipo_de_transaccion.grid(row= 2, column=1,padx=10,pady=10, columnspan='2')
 
         self.fecha_c = tk.StringVar()
         self.entry_fecha = tk.Entry(self,textvariable=self.fecha_c)
         self.entry_fecha.config(width=25, font=('Arial',12),state='disabled')
-        self.entry_fecha.grid(row= 2, column=4,padx=10,pady=10, columnspan='2')
+        self.entry_fecha.grid(row= 2, column=4,padx=10,pady=10, columnspan='3')
 
         self.monto_c = tk.StringVar()
         self.entry_monto = tk.Entry(self,textvariable=self.monto_c)
         self.entry_monto.config(width=15, font=('Arial',12),state='disabled')
-        self.entry_monto.grid(row= 3, column=1,padx=10,pady=10, columnspan='4')
+        self.entry_monto.grid(row= 3, column=1,padx=10,pady=10, columnspan='2')
 
         self.observaciones_c = tk.StringVar()
         self.entry_observaciones = tk.Entry(self,textvariable=self.observaciones_c)
         self.entry_observaciones.config(width=50, font=('Arial',12),state='disabled')
-        self.entry_observaciones.grid(row= 4, column=1,padx=10,pady=10, columnspan='4')
+        self.entry_observaciones.grid(row= 4, column=1,padx=10,pady=10, columnspan='6')
     
     def botones_principales(self):
         self.btn_alta = tk.Button(self, text='Nuevo',command= self.habilitar_campos)
@@ -170,17 +170,6 @@ class Frame10(Frame):
         self.btn_editar = tk.Button(self, text='Editar', command= self.editar_registro)
         self.btn_editar.config(width= 20,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#1C500B',cursor='hand2',activebackground='#3FD83F',activeforeground='#000000')
         self.btn_editar.grid(row= 7, column=0,padx=10,pady=10, columnspan=2)
-
-        self.buscar_t = tk.StringVar()
-        self.buscar_t.set("example@example.com")
-        self.entry_buscar_t = tk.Entry(self,textvariable=self.buscar_t)
-        self.entry_buscar_t.config(width=30, font=('Arial',12))
-        self.entry_buscar_t.grid(row= 7, column=4,padx=10,pady=10, columnspan='2')
-
-        self.btn_buscar_t = tk.Button(self, text='Buscar')
-        self.btn_buscar_t.config(width= 10,font=('Arial', 12,'bold'),fg ='#FFFFFF' , bg='#7B7B78',cursor='hand2',activebackground='#C6C6C0',activeforeground='#FFFFFF')
-        self.btn_buscar_t.grid(row= 7, column=7,padx=10,pady=10)
-
 
     def editar_registro(self):
         try:
