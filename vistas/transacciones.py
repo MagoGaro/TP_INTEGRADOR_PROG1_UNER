@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 from vistas.claseg import Frame
-from controlador.transacciones_dao import leer_transacciones, guardar_transacciones, editar_transacciones, eliminar_transaccion
+from controlador.transacciones_dao import leer_transacciones, guardar_transacciones, editar_transacciones
 
 
 def open_vista_transacciones(root):
@@ -21,6 +21,7 @@ class Frame10(Frame):
         super().__init__(root)
         self.root = root
         self.pack()
+        self.id_tr = None
 
 
         self.label_form()
@@ -105,6 +106,7 @@ class Frame10(Frame):
         self.entry_fecha.config(state='normal')
         self.entry_observaciones.config(state='normal')
         self.entry_monto.config(state='normal')
+        self.entry_tipo_de_transaccion.config(state='normal')
         self.btn_modi.config(state='normal')
         self.btn_cance.config(state='normal')
         self.btn_alta.config(state='disabled')
@@ -175,7 +177,7 @@ class Frame10(Frame):
 
     def editar_registro(self):
         try:
-            self.id_tra = self.tabla.item(self.tabla.selection())['text']
+            self.id_tr = self.tabla.item(self.tabla.selection())['text']
 
             self.montito = self.tabla.item(self.tabla.selection())['values'][4]
             self.id_v = self.tabla.item(self.tabla.selection())['values'][0]
@@ -196,17 +198,21 @@ class Frame10(Frame):
             messagebox.showerror("Error", f"{e}")
 
     def guardar_campos(self):
-        persona = {
-        "id_cliente": '',
-        "nombre": self.nombre_c.get(),
-        "apellido": self.apellido_c.get(),
-        "documento": self.documento_c.get(),
-        "direccion":  self.direccion_c.get(),
-        "telefono": self.telefono_c.get(),
-        "correo_electronico": self.correo_c.get()
+        transaccion = {
+        "id_transaccion": '',
+        "id_vehiculo": self.id_de_vehículo_c.get(),
+        "id_cliente": self.id_de_cliente_c.get(),
+        "tipo_transaccion": self.tipo_transaccion_c.get(),
+        "fecha":  self.fecha_c.get(),
+        "monto": self.monto_c.get(),
+        "observaciones": self.observaciones_c.get()
     }
 
-        if self.id_transaccion == None:
-            guardar_transacciones(persona,'transaccion')
+        if self.id_tr == None:
+            guardar_transacciones(transaccion,'transacciones')
         else:
-            editar_transacciones(persona,'transaccion', int(self.id_transaccion))
+            editar_transacciones(transaccion,'transacciones', int(self.id_tr))
+
+        self.id_tr = None
+        self.tabla_transaccion()
+        self.bloquear_campos()
