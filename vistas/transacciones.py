@@ -67,9 +67,14 @@ class Frame10(Frame):
         self.entry_id_de_cliente.config(width=20, font=('Arial',12),state='disabled')
         self.entry_id_de_cliente.grid(row= 1, column=4,padx=10,pady=10, columnspan='2')
 
-        self.tipo_transaccion_c = tk.StringVar()
-        self.entry_tipo_de_transaccion = tk.Entry(self,textvariable=self.tipo_transaccion_c)
-        self.entry_tipo_de_transaccion.config(width=20, font=('Arial',12),state='disabled')
+        y = ["Compra","Venta"]
+        self.tipo_t = ['Seleccione uno'] + y
+
+        self.entry_tipo_de_transaccion = ttk.Combobox(self, state="readonly")
+        self.entry_tipo_de_transaccion['values'] = self.tipo_t
+        self.entry_tipo_de_transaccion.current(0)
+        self.entry_tipo_de_transaccion.config(width=25, state='disabled',font=('Arial',12))
+        self.entry_tipo_de_transaccion.bind("<<ComboboxSelected>>")
         self.entry_tipo_de_transaccion.grid(row= 2, column=1,padx=10,pady=10, columnspan='2')
 
         self.fecha_c = tk.StringVar()
@@ -106,7 +111,7 @@ class Frame10(Frame):
         self.entry_fecha.config(state='normal')
         self.entry_observaciones.config(state='normal')
         self.entry_monto.config(state='normal')
-        self.entry_tipo_de_transaccion.config(state='normal')
+        self.entry_tipo_de_transaccion.config(state="readonly")
         self.btn_modi.config(state='normal')
         self.btn_cance.config(state='normal')
         self.btn_alta.config(state='disabled')
@@ -114,6 +119,8 @@ class Frame10(Frame):
     def bloquear_campos(self):
         self.entry_id_de_vehículo.config(state='disabled')
         self.entry_id_de_cliente.config(state='disabled')
+        self.entry_tipo_de_transaccion.current(0)
+        self.entry_tipo_de_transaccion.config(state="disabled")
         self.entry_fecha.config(state='disabled')
         self.entry_monto.config(state='disabled')
         self.entry_observaciones.config(state='disabled')
@@ -121,7 +128,7 @@ class Frame10(Frame):
         self.monto_c.set('')
         self.observaciones_c.set('')
         self.fecha_c.set('')
-        self.tipo_transaccion_c.set('')
+        self.entry_tipo_de_transaccion.current(0)
         self.id_de_cliente_c.set('')
         self.id_de_vehículo_c.set('')
 
@@ -190,7 +197,7 @@ class Frame10(Frame):
             self.monto_c.set(self.montito)
             self.observaciones_c.set(self.obv)
             self.fecha_c.set(self.fech)
-            self.tipo_transaccion_c.set(self.tipo)
+            self.entry_tipo_de_transaccion.current(1 if self.tipo == 'Compra' else 2)
             self.id_de_cliente_c.set(self.id_c)
             self.id_de_vehículo_c.set(self.id_v)
 
@@ -202,7 +209,7 @@ class Frame10(Frame):
         "id_transaccion": '',
         "id_vehiculo": self.id_de_vehículo_c.get(),
         "id_cliente": self.id_de_cliente_c.get(),
-        "tipo_transaccion": self.tipo_transaccion_c.get(),
+        "tipo_transaccion": self.entry_tipo_de_transaccion.get(),
         "fecha":  self.fecha_c.get(),
         "monto": self.monto_c.get(),
         "observaciones": self.observaciones_c.get()
