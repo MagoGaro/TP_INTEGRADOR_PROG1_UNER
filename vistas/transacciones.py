@@ -194,21 +194,24 @@ class Frame10(Frame):
             messagebox.showerror("Error", f"{e}")
 
     def guardar_campos(self):
-        transaccion = {
-        "id_transaccion": '',
-        "id_vehiculo": self.id_de_vehículo_c.get(),
-        "id_cliente": self.id_de_cliente_c.get(),
-        "tipo_transaccion": self.entry_tipo_de_transaccion.get(),
-        "fecha":  self.fecha_c.get(),
-        "monto": self.monto_c.get(),
-        "observaciones": self.observaciones_c.get()
-    }
+        if self.entry_tipo_de_transaccion.current() == 'Seleccione uno':
+            transaccion = {
+            "id_transaccion": '',
+            "id_vehiculo": self.id_de_vehículo_c.get(),
+            "id_cliente": self.id_de_cliente_c.get(),
+            "tipo_transaccion": self.entry_tipo_de_transaccion.get(),
+            "fecha":  self.fecha_c.get(),
+            "monto": self.monto_c.get(),
+            "observaciones": self.observaciones_c.get()
+        }
 
-        if self.id_tr == None:
-            guardar_transacciones(transaccion,'transacciones')
+            if self.id_tr == None:
+                guardar_transacciones(transaccion,'transacciones')
+            else:
+                editar_transacciones(transaccion,'transacciones', int(self.id_tr))
+
+            self.id_tr = None
+            self.tabla_transaccion()
+            self.bloquear_campos()
         else:
-            editar_transacciones(transaccion,'transacciones', int(self.id_tr))
-
-        self.id_tr = None
-        self.tabla_transaccion()
-        self.bloquear_campos()
+            messagebox.showerror("Error", "Debe seleccionar un tipo de transaccion")
