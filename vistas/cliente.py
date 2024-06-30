@@ -179,7 +179,7 @@ class Frame3(Frame):
 
     def editar_registro(self):
         try:
-            self.id_tra = self.tabla.item(self.tabla.selection())['text']
+            self.id_cli = self.tabla.item(self.tabla.selection())['text']
 
             self.nombre_cliente = self.tabla.item(self.tabla.selection())['values'][0]
             self.apellido_cliente = self.tabla.item(self.tabla.selection())['values'][1]

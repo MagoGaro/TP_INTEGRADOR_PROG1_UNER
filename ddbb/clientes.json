@@ -18,15 +18,6 @@
         "correo_electronico": "maria.gomez@example.com"
     },
     {
-        "id_cliente": 3,
-        "nombre": "asdas",
-        "apellido": "asdasd",
-        "documento": "dasda",
-        "direccion": "asda",
-        "telefono": "asdasd",
-        "correo_electronico": "sasdasd"
-    },
-    {
         "id_cliente": 4,
         "nombre": "Gabriel",
         "apellido": "Roman",
@@ -46,11 +37,38 @@
     },
     {
         "id_cliente": 8,
-        "nombre": "test33",
+        "nombre": "test3333",
         "apellido": "test33",
         "documento": "test33",
-        "direccion": "test33",
-        "telefono": "test33",
+        "direccion": "test3312",
+        "telefono": "test3312",
         "correo_electronico": "test33"
+    },
+    {
+        "id_cliente": 9,
+        "nombre": "Julieta",
+        "apellido": "Gutierrez",
+        "documento": "35265231",
+        "direccion": "calle falsa 999",
+        "telefono": "1133226655",
+        "correo_electronico": "soyuncorreo@soyuncorreo.com"
+    },
+    {
+        "id_cliente": 11,
+        "nombre": "Belen",
+        "apellido": "Gomez",
+        "documento": "22132132",
+        "direccion": "calle 111",
+        "telefono": "113023023",
+        "correo_electronico": "test2@test2.com"
+    },
+    {
+        "id_cliente": 12,
+        "nombre": "Mayra",
+        "apellido": "Lopez",
+        "documento": "36241052",
+        "direccion": "dir 253",
+        "telefono": "26354125",
+        "correo_electronico": "coreeo@correo.com"
     }
 ]

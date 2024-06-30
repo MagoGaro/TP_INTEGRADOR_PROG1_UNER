@@ -309,7 +309,7 @@ class Frame4(Frame):
             self.precio_venta_v.set(auto['precio_venta'])
             self.estado_var.set(auto['estado'])
 
-            self.id_cli = auto['id_vehiculo']
+            self.id_veh = auto['id_vehiculo']
 
             self.buscar_v.set('')
         else:

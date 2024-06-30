@@ -25,5 +25,14 @@
         "fecha": "2024-06-25",
         "monto": "16000",
         "observaciones": "Venta realizada"
+    },
+    {
+        "id_transaccion": 4,
+        "id_vehiculo": "4",
+        "id_cliente": "4",
+        "tipo_transaccion": "Venta",
+        "fecha": "2024-06-25",
+        "monto": "20000",
+        "observaciones": "Venta Realizada"
     }
 ]

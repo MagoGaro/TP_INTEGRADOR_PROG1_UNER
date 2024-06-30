@@ -48,30 +48,6 @@
         "estado": "Reservado"
     },
     {
-        "id_vehiculo": 6,
-        "patente": "ASD",
-        "marca": "sedan",
-        "modelo": "focus",
-        "tipo": "asd",
-        "a\u00f1o": "2024",
-        "kilometraje": "asd",
-        "precio_compra": "asd",
-        "precio_venta": "asd",
-        "estado": "Disponible"
-    },
-    {
-        "id_vehiculo": 7,
-        "patente": "ASD",
-        "marca": "asd",
-        "modelo": "sedan",
-        "tipo": "pickup",
-        "a\u00f1o": "2000",
-        "kilometraje": "asd",
-        "precio_compra": "asd",
-        "precio_venta": "asd",
-        "estado": "Vendido"
-    },
-    {
         "id_vehiculo": 8,
         "patente": "BCA312",
         "marca": "Chevrolet",
@@ -80,6 +56,42 @@
         "a\u00f1o": "2015",
         "kilometraje": "30000",
         "precio_compra": "16000",
+        "precio_venta": "17500",
+        "estado": "Disponible"
+    },
+    {
+        "id_vehiculo": 10,
+        "patente": "ABC124",
+        "marca": "Toyota",
+        "modelo": "Corolla",
+        "tipo": "Sed\u00e1n",
+        "a\u00f1o": "2014",
+        "kilometraje": "75000",
+        "precio_compra": "12000",
+        "precio_venta": "15001",
+        "estado": "Disponible"
+    },
+    {
+        "id_vehiculo": 11,
+        "patente": "MKJ111",
+        "marca": "Ford",
+        "modelo": "Focus",
+        "tipo": "Sedan",
+        "a\u00f1o": "2014",
+        "kilometraje": "35000",
+        "precio_compra": "19000",
+        "precio_venta": "22000",
+        "estado": "Reservado"
+    },
+    {
+        "id_vehiculo": 12,
+        "patente": "SDW222",
+        "marca": "Toyota",
+        "modelo": "corolla",
+        "tipo": "sedan",
+        "a\u00f1o": "2000",
+        "kilometraje": "75000",
+        "precio_compra": "17000",
         "precio_venta": "17500",
         "estado": "Disponible"
     }
