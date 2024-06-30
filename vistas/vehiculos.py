@@ -184,7 +184,7 @@ class Frame4(Frame):
 
         for p in self.contenido_veh:
             self.tabla.insert('',0,text=p['id_vehiculo'],
-                                values = (p['patente'],p['marca'],p['modelo'],p['tipo'],p['año'],p['kilometraje'],p['precio_compra'],p['precio_venta'],p['estado']))
+                                values = (p['patente'],p['marca'],p['tipo'],p['año'],p['modelo'],p['kilometraje'],p['precio_compra'],p['precio_venta'],p['estado']))
         
         self.tabla.heading('#0', text='ID')
         self.tabla.heading('#1', text='Nº de Patente')
@@ -263,7 +263,7 @@ class Frame4(Frame):
     def guardar_campos(self):
         auto = {
         "id_vehiculo": '',
-        "patente": self.patente_v.get(),
+        "patente": self.patente_v.get().upper(),
         "marca": self.marca_v.get(),
         "modelo": self.modelo_v.get(),
         "tipo": self.tipo_v.get(),
