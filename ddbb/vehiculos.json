@@ -37,7 +37,7 @@
     },
     {
         "id_vehiculo": 4,
-        "patente": "kjh785",
+        "patente": "KJH785",
         "marca": "Renault",
         "modelo": "clio",
         "tipo": "sedan",
@@ -45,11 +45,11 @@
         "kilometraje": "14500",
         "precio_compra": "15600",
         "precio_venta": "14000",
-        "estado": "Estado"
+        "estado": "Reservado"
     },
     {
         "id_vehiculo": 6,
-        "patente": "asd",
+        "patente": "ASD",
         "marca": "sedan",
         "modelo": "focus",
         "tipo": "asd",
@@ -57,11 +57,11 @@
         "kilometraje": "asd",
         "precio_compra": "asd",
         "precio_venta": "asd",
-        "estado": "Estado"
+        "estado": "Disponible"
     },
     {
         "id_vehiculo": 7,
-        "patente": "asd",
+        "patente": "ASD",
         "marca": "asd",
         "modelo": "sedan",
         "tipo": "pickup",
@@ -69,7 +69,7 @@
         "kilometraje": "asd",
         "precio_compra": "asd",
         "precio_venta": "asd",
-        "estado": "Estado"
+        "estado": "Vendido"
     },
     {
         "id_vehiculo": 8,

@@ -26,6 +26,7 @@ def editar_vehiculo(auto, archivo, id):
             p["año"] = auto['año']
             p["precio_compra"] = auto['precio_compra']
             p["precio_venta"] = auto['precio_venta']
+            p["estado"] = auto['estado']
     
     with open(ruta, 'w') as f:
         json.dump(info, f, indent=4)

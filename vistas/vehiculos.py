@@ -144,6 +144,7 @@ class Frame4(Frame):
         self.btn_alta.config(state='disabled')
 
     def bloquear_campos(self):
+        self.id_veh = None
         self.entry_patente.config(state='disabled')
         self.entry_marca.config(state='disabled')
         self.entry_tipo.config(state='disabled')
